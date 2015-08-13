@@ -1,112 +1,77 @@
-
- <!DOCTYPE HTML>
-<html lang="zh-cN">
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   
-    <title>sizeof 小结 | nonewbie&#39;s Blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="nonewbie">
-    
+  <title>sizeof 小结 | nonewbie&#39;s Blog</title>
+  <meta name="author" content="nonewbie">
+  
+  <meta name="description" content="nonewbie&#39;s blog">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
-    <meta name="description" content="声明一个 string S = “xiantao”
-求string S 中字符的个数：（C++中类Sting提供了一些字符串的基本操作，其中length()就返回了字符串的字符个数）cout &amp;lt;&amp;lt; “the char_number of S” &amp;lt;&amp;lt;S.length() &amp;lt;&amp;lt; endl;//返回7
-求S（也就是S本身，它是一个引用） 在内存所占大小（单位：Byte">
-<meta property="og:type" content="article">
-<meta property="og:title" content="sizeof 小结">
-<meta property="og:url" content="http://yoursite.com/2014/03/16/sizeof小结/index.html">
-<meta property="og:site_name" content="nonewbie's Blog">
-<meta property="og:description" content="声明一个 string S = “xiantao”
-求string S 中字符的个数：（C++中类Sting提供了一些字符串的基本操作，其中length()就返回了字符串的字符个数）cout &amp;lt;&amp;lt; “the char_number of S” &amp;lt;&amp;lt;S.length() &amp;lt;&amp;lt; endl;//返回7
-求S（也就是S本身，它是一个引用） 在内存所占大小（单位：Byte">
-<meta property="og:updated_time" content="2015-08-03T21:48:06.702Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sizeof 小结">
-<meta name="twitter:description" content="声明一个 string S = “xiantao”
-求string S 中字符的个数：（C++中类Sting提供了一些字符串的基本操作，其中length()就返回了字符串的字符个数）cout &amp;lt;&amp;lt; “the char_number of S” &amp;lt;&amp;lt;S.length() &amp;lt;&amp;lt; endl;//返回7
-求S（也就是S本身，它是一个引用） 在内存所占大小（单位：Byte">
+  <meta property="og:title" content="sizeof 小结"/>
+  <meta property="og:site_name" content="nonewbie&#39;s Blog"/>
 
-    
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
     <link rel="alternative" href="/atom.xml" title="nonewbie&#39;s Blog" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/jacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
-    
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'shineneo1 blog']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+
 </head>
 
-  <body>
-    <header>
-      
-<div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.png" alt="nonewbie&#39;s Blog" title="nonewbie&#39;s Blog"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="nonewbie&#39;s Blog">nonewbie&#39;s Blog</a></h1>
-				<h2 class="blog-motto">Note my day!</h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">Home</a></li>
-					
-						<li><a href="/archives">Archives</a></li>
-					
-						<li><a href="/about">About</a></li>
-					
-					<li>
- 					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-						<input type="hidden" name="q" value="site:yoursite.com">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">nonewbie&#39;s Blog</a><span class="split"></span><span class="title">sizeof 小结</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2014-03-16</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
   
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2014/03/16/sizeof小结/" title="sizeof 小结" itemprop="url">sizeof 小结</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="nonewbie" target="_blank" itemprop="author">nonewbie</a>
-		
-  <p class="article-time">
-    <time datetime="2014-03-16T11:56:36.000Z" itemprop="datePublished"> 發表於 2014-03-16</time>
-    
-  </p>
-</header>
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
-		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#求string_S_中字符的个数：（C++中类Sting提供了一些字符串的基本操作，其中length()就返回了字符串的字符个数）"><span class="toc-number">1.</span> <span class="toc-text">求string S 中字符的个数：（C++中类Sting提供了一些字符串的基本操作，其中length()就返回了字符串的字符个数）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#求S（也就是S本身，它是一个引用）_在内存所占大小（单位：Byte）："><span class="toc-number">2.</span> <span class="toc-text">求S（也就是S本身，它是一个引用） 在内存所占大小（单位：Byte）：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#求一个char_char_a_=_‘T’所占内存大小。"><span class="toc-number">3.</span> <span class="toc-text">求一个char char_a = ‘T’所占内存大小。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#那么怎么求出一个string_S在内存中的大小呢"><span class="toc-number"></span> <span class="toc-text">那么怎么求出一个string S在内存中的大小呢</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sizeof一些基本类型的大小：sizeof(type)_在64位机器上编译结果如下"><span class="toc-number">1.</span> <span class="toc-text">sizeof一些基本类型的大小：sizeof(type)  在64位机器上编译结果如下</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于数组应该注意的："><span class="toc-number"></span> <span class="toc-text">关于数组应该注意的：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#求数组的length。sizeof(arr)_/_sizeof(int);"><span class="toc-number">1.</span> <span class="toc-text">求数组的length。sizeof(arr) / sizeof(int);</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#求结构体Stru的sizeof(Stru)是16=(4_+_4_+_8)Byte。"><span class="toc-number">2.</span> <span class="toc-text">求结构体Stru的sizeof(Stru)是16=(4 + 4 + 8)Byte。</span></a></li></ol>
-		
-		</div>
-		
-		<p>声明一个 string S = “xiantao”</p>
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <p>声明一个 string S = “xiantao”</p>
 <h3 id="求string_S_中字符的个数：（C++中类Sting提供了一些字符串的基本操作，其中length()就返回了字符串的字符个数）">求string S 中字符的个数：（C++中类Sting提供了一些字符串的基本操作，其中length()就返回了字符串的字符个数）</h3><p>cout &lt;&lt; “the char_number of S” &lt;&lt;S.length() &lt;&lt; endl;//返回7</p>
 <h3 id="求S（也就是S本身，它是一个引用）_在内存所占大小（单位：Byte）：">求S（也就是S本身，它是一个引用） 在内存所占大小（单位：Byte）：</h3><p>cout &lt;&lt; “sizeof sting S” &lt;&lt;sizeof(S) &lt;&lt; endl; // 返回28</p>
 <p>为什么会是这样呢？对比看一下这个输出</p>
@@ -168,276 +133,63 @@
 <p>如上面的函数，运行之，能得到一个int 类型指针的大小：4 Byte。为什么？在传递数组时，其实只是把指针传递给了函数当做实参，不是整个<br>数组。而所有指针类型求sizeof都是4字节。</p>
 <p>关于结构体要注意的：</p>
 <h3 id="求结构体Stru的sizeof(Stru)是16=(4_+_4_+_8)Byte。">求结构体Stru的sizeof(Stru)是16=(4 + 4 + 8)Byte。</h3><p>为什么上面计算的Stru中吧char类型成员看成4呢？之前在一个博客里看见 为了字节对齐。计算机一次可以32位进行计算。所以吧char类型和int<br>类型对齐进行计算。</p>
-  
-	</div>
-		<footer class="article-footer clearfix">
-<div class="article-catetags">
+	  
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/C/">C++</a>
-</div>
-
-
-</div>
-
-
-
-	<div class="article-share" id="share">
-	
-	  <div data-url="http://yoursite.com/2014/03/16/sizeof小结/" data-title="sizeof 小结 | nonewbie&#39;s Blog" data-tsina="null" class="share clearfix">
-	  </div>
-	
-	</div>
-
-
-</footer>
-
-   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
-
-<div class="next">
-<a href="/2014/02/28/hello-world/"  title="Hello World">
- <strong>下一篇：</strong><br/> 
- <span>Hello World
-</span>
-</a>
-</div>
-
-</nav>
-
-	
-
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目錄</strong>
- 
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#求string_S_中字符的个数：（C++中类Sting提供了一些字符串的基本操作，其中length()就返回了字符串的字符个数）"><span class="toc-number">1.</span> <span class="toc-text">求string S 中字符的个数：（C++中类Sting提供了一些字符串的基本操作，其中length()就返回了字符串的字符个数）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#求S（也就是S本身，它是一个引用）_在内存所占大小（单位：Byte）："><span class="toc-number">2.</span> <span class="toc-text">求S（也就是S本身，它是一个引用） 在内存所占大小（单位：Byte）：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#求一个char_char_a_=_‘T’所占内存大小。"><span class="toc-number">3.</span> <span class="toc-text">求一个char char_a = ‘T’所占内存大小。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#那么怎么求出一个string_S在内存中的大小呢"><span class="toc-number"></span> <span class="toc-text">那么怎么求出一个string S在内存中的大小呢</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sizeof一些基本类型的大小：sizeof(type)_在64位机器上编译结果如下"><span class="toc-number">1.</span> <span class="toc-text">sizeof一些基本类型的大小：sizeof(type)  在64位机器上编译结果如下</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于数组应该注意的："><span class="toc-number"></span> <span class="toc-text">关于数组应该注意的：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#求数组的length。sizeof(arr)_/_sizeof(int);"><span class="toc-number">1.</span> <span class="toc-text">求数组的length。sizeof(arr) / sizeof(int);</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#求结构体Stru的sizeof(Stru)是16=(4_+_4_+_8)Byte。"><span class="toc-number">2.</span> <span class="toc-text">求结构体Stru的sizeof(Stru)是16=(4 + 4 + 8)Byte。</span></a></li></ol>
- 
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
-<aside class="clearfix">
-
-  
-<div class="categorieslist">
-	<p class="asidetitle">分類</p>
-		<ul>
-		
-		  
-			<li><a href="/categories/C/" title="C++">C++<sup>1</sup></a></li>
-		  
-		
-		</ul>
-</div>
-
-
-  
-
-  <div class="linkslist">
-  <p class="asidetitle">友情鏈接</p>
-    <ul>
-        
-          <li>
-            
-            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
-            
-          </li>
-        
-    </ul>
-</div>
-
-  
-
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
-</div>
-
-</aside>
-</div>
-    </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
 	
 	
-	<section class="info">
-		<p> Hello ,I&#39;m Larry Page in Google. <br/>
-			This is my blog,believe it or not.</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
+	
+	
+	
 		
+	
 		
-		
-		
-		
-		
-		
-		
-		
-		
-	</div>
+			
 			
 		
-
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+	
 		
-		<a href="/about" target="_blank" title="nonewbie">nonewbie</a>
-		
-		
-		</p>
+	
+	
+		<li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next disabled"><a>next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
 </div>
-</footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2015 nonewbie
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
-        
-    }
-  });
-});
-</script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
-</script>
-
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-
-  $('.hoverqrcode').hide();
-
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
-</script>
-
-
-
-
-
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
 
 
 
@@ -445,52 +197,11 @@ $(document).ready(function(){
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-}); 
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
 </script>
 
 
-
-<!-- Analytics Begin -->
-
-
-
-
-
-<!-- Analytics End -->
-
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
-
-<!-- Totop End -->
-
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
-
-
-<!-- MathJax End -->
-
-<!-- Tiny_search Begin -->
-
-<!-- Tiny_search End -->
-
-  </body>
+</body>
 </html>

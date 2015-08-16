@@ -40,7 +40,7 @@
   
 <script type="text/javascript">
 var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'shineneo1 blog']);
+_gaq.push(['_setAccount', 'shineneo1&#39;s blog']);
 _gaq.push(['_trackPageview']);
 (function() {
 var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
@@ -72,64 +72,26 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 
 	  <!-- content -->
 	  <p>声明一个 string S = “xiantao”</p>
-<h3 id="求string_S_中字符的个数：（C++中类Sting提供了一些字符串的基本操作，其中length()就返回了字符串的字符个数）">求string S 中字符的个数：（C++中类Sting提供了一些字符串的基本操作，其中length()就返回了字符串的字符个数）</h3><p>cout &lt;&lt; “the char_number of S” &lt;&lt;S.length() &lt;&lt; endl;//返回7</p>
-<h3 id="求S（也就是S本身，它是一个引用）_在内存所占大小（单位：Byte）：">求S（也就是S本身，它是一个引用） 在内存所占大小（单位：Byte）：</h3><p>cout &lt;&lt; “sizeof sting S” &lt;&lt;sizeof(S) &lt;&lt; endl; // 返回28</p>
+<h3 id="求string_S_中字符的个数：（C++中类Sting提供了一些字符串的基本操作，其中length()就返回了字符串的字符个数）">求string S 中字符的个数：（C++中类Sting提供了一些字符串的基本操作，其中length()就返回了字符串的字符个数）</h3><p><code>cout &lt;&lt; &quot;the char_number of S&quot; &lt;&lt;S.length() &lt;&lt; endl;//返回7</code></p>
+<h3 id="求S（也就是S本身，它是一个引用）_在内存所占大小（单位：Byte）：">求S（也就是S本身，它是一个引用） 在内存所占大小（单位：Byte）：</h3><p><code>cout &lt;&lt; &quot;sizeof sting S&quot; &lt;&lt;sizeof(S) &lt;&lt; endl; // 返回28</code></p>
 <p>为什么会是这样呢？对比看一下这个输出</p>
-<p>cout &lt;&lt; “sizeof sting_type “ &lt;&lt;sizeof(string) &lt;&lt; endl; // 返回28</p>
+<p><code>cout &lt;&lt; &quot;sizeof sting_type &quot; &lt;&lt;sizeof(string) &lt;&lt; endl; // 返回28</code></p>
 <p>其实他俩所占的大小是一样的，S是一个string类型的引用，它本身也占有一定的内存。这个内存大小是固定的一班由编译器决定。</p>
-<h3 id="求一个char_char_a_=_‘T’所占内存大小。">求一个char char_a = ‘T’所占内存大小。</h3><p>cout &lt;&lt; “sizeof char” &lt;&lt;sizeof(char) &lt;&lt; endl;//等于下面的</p>
-<p>cout &lt;&lt; “sizeof char_a” &lt;&lt;sizeof(char_a) &lt;&lt; endl;//输出是 1</p>
-<p>同样在string中每个字符占内存大小也是char类型的大小。</p>
-<h2 id="那么怎么求出一个string_S在内存中的大小呢">那么怎么求出一个string S在内存中的大小呢</h2><pre><code>应用以上的<span class="keyword">sizeof</span>用法就能知道：space of <span class="built_in">string</span> S：<span class="keyword">sizeof</span>(<span class="keyword">char</span>) * (S.length()+<span class="number">1</span>)
-
-这里面为什么是(S.length()+<span class="number">1</span>)个呢？其实由于<span class="built_in">string</span> 类型需要一个结束符来当标志。最后一个结束符就是<span class="literal">NULL</span>，在这里就把他当做是<span class="built_in">string</span>的地址空间。
-
-这里插入一点关于<span class="built_in">string</span>的最后一个结束标志它打印出来的是个空字符。
-
-
-求出S的首地址<span class="keyword">char</span> *address_first = &amp;S[<span class="number">0</span>];很明显address_first 是一个<span class="keyword">char</span>类型的指针。
-
-<span class="built_in">cout</span> &lt;&lt; *(address_first+<span class="number">7</span>) &lt;&lt; <span class="string">"***"</span> &lt;&lt; endl;
-
-输出结果是“@***” <span class="comment">//这里用@代替空格。</span>
-
-为了避免造成误解，还要找个对比看一下
-
-<span class="built_in">cout</span> &lt;&lt;*(address_first+<span class="number">8</span>)&lt;&lt; <span class="string">"****"</span> &lt;&lt; endl;
-
-结果输出了一个乱码和***。
-</code></pre><h3 id="sizeof一些基本类型的大小：sizeof(type)_在64位机器上编译结果如下">sizeof一些基本类型的大小：sizeof(type)  在64位机器上编译结果如下</h3><pre><code><span class="keyword">sizeof</span> (<span class="keyword">unsigned</span> <span class="keyword">int</span>) =  <span class="keyword">sizeof</span> (<span class="keyword">int</span>) = <span class="keyword">sizeof</span>(<span class="keyword">long</span>)=<span class="number">4</span>;
-
-<span class="keyword">sizeof</span> (<span class="keyword">long</span> <span class="keyword">long</span>) = <span class="number">8</span>;
-
-<span class="keyword">sizeof</span> (<span class="keyword">float</span>) = <span class="number">4</span>;
-
-<span class="keyword">sizeof</span>(<span class="keyword">double</span>) = <span class="number">8</span>;
-
-<span class="keyword">sizeof</span>(<span class="keyword">bool</span>) = <span class="number">1</span>;
-
-<span class="keyword">sizeof</span>(<span class="keyword">char</span>) = <span class="number">1</span>;
-
-<span class="keyword">sizeof</span>下求解一些数组(<span class="built_in">array</span>)，结构体(<span class="keyword">struct</span>)，联合体(<span class="keyword">union</span>)
-
-声明个数组 <span class="keyword">int</span> arr[<span class="number">6</span>]
-
-一个结构体：
-
-<span class="keyword">struct</span> Stru{
-
-
-    <span class="keyword">int</span> a;
-
-    <span class="keyword">char</span> b;
-
-    <span class="keyword">long</span> <span class="keyword">long</span> c;
-
-};
-</code></pre><p>有这个函数<br>void function(int arry[]){</p>
-<pre><code><span class="built_in">cout</span> &lt;&lt; <span class="keyword">sizeof</span>(arr) &lt;&lt; endl;
-</code></pre><p>}</p>
-<h2 id="关于数组应该注意的：">关于数组应该注意的：</h2><h3 id="求数组的length。sizeof(arr)_/_sizeof(int);">求数组的length。sizeof(arr) / sizeof(int);</h3><p>但是如果这样吧一个数组当做实参传递给一个函数，在函数中又会发生什么呢？</p>
+<h3 id="求一个char_char_a_=_‘T’所占内存大小。">求一个char char_a = ‘T’所占内存大小。</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"sizeof char"</span> &lt;&lt;<span class="keyword">sizeof</span>(<span class="keyword">char</span>) &lt;&lt; endl;<span class="comment">//等于下面的</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"sizeof char_a"</span> &lt;&lt;<span class="keyword">sizeof</span>(char_a) &lt;&lt; endl;<span class="comment">//输出是 1</span></span><br></pre></td></tr></table></figure>
+<p>同样在string中每个字符占内存大小也是char类型的大小.  </p>
+<h2 id="那么怎么求出一个string_S在内存中的大小呢">那么怎么求出一个string S在内存中的大小呢</h2><p>应用以上的sizeof用法就能知道：space of string S：sizeof(char) <em> (S.length()+1)<br>这里面为什么是(S.length()+1)个呢？其实由于string 类型需要一个结束符来当标志。最后一个结束符就是NULL，在这里就把他当做是string的地址空间。<br>这里插入一点关于string的最后一个结束标志它打印出来的是个空字符.<br>求出S的首地址char </em>address_first = &amp;S[0];很明显address_first 是一个char类型的指针。  </p>
+<p><code>cout &lt;&lt; *(address_first+7) &lt;&lt; &quot;***&quot; &lt;&lt; endl;</code></p>
+<p>输出结果是“@<em>*</em>” //这里用@代替空格。</p>
+<p>为了避免造成误解，还要找个对比看一下</p>
+<p><code>cout &lt;&lt;*(address_first+8)&lt;&lt; &quot;****&quot; &lt;&lt; endl;</code></p>
+<p>结果输出了一个乱码和<em>*</em>。</p>
+<h3 id="sizeof一些基本类型的大小：sizeof(type)_在64位机器上编译结果如下">sizeof一些基本类型的大小：sizeof(type)  在64位机器上编译结果如下</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sizeof</span> (<span class="keyword">unsigned</span> <span class="keyword">int</span>) =  <span class="keyword">sizeof</span> (<span class="keyword">int</span>) = <span class="keyword">sizeof</span>(<span class="keyword">long</span>)=<span class="number">4</span>;</span><br><span class="line"><span class="keyword">sizeof</span> (<span class="keyword">long</span> <span class="keyword">long</span>) = <span class="number">8</span>;</span><br><span class="line"><span class="keyword">sizeof</span> (<span class="keyword">float</span>) = <span class="number">4</span>;</span><br><span class="line"><span class="keyword">sizeof</span>(<span class="keyword">double</span>) = <span class="number">8</span>;</span><br><span class="line"><span class="keyword">sizeof</span>(<span class="keyword">bool</span>) = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">sizeof</span>(<span class="keyword">char</span>) = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>sizeof下求解一些数组(array)，结构体(struct)，联合体(union)  </p>
+<p>声明个数组 int arr[6]一个结构体：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> Stru&#123;</span><br><span class="line">	<span class="keyword">int</span> a;</span><br><span class="line">	<span class="keyword">char</span> b;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> c;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>有这个函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">function</span><span class="params">(<span class="keyword">int</span> arry[])</span></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="keyword">sizeof</span>(arr) &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="关于数组应该注意的：">关于数组应该注意的：</h2><h3 id="求数组的length。sizeof(arr)_/_sizeof(int);">求数组的length。<code>sizeof(arr) / sizeof(int);</code></h3><p>但是如果这样吧一个数组当做实参传递给一个函数，在函数中又会发生什么呢？</p>
 <p>如上面的函数，运行之，能得到一个int 类型指针的大小：4 Byte。为什么？在传递数组时，其实只是把指针传递给了函数当做实参，不是整个<br>数组。而所有指针类型求sizeof都是4字节。</p>
 <p>关于结构体要注意的：</p>
 <h3 id="求结构体Stru的sizeof(Stru)是16=(4_+_4_+_8)Byte。">求结构体Stru的sizeof(Stru)是16=(4 + 4 + 8)Byte。</h3><p>为什么上面计算的Stru中吧char类型成员看成4呢？之前在一个博客里看见 为了字节对齐。计算机一次可以32位进行计算。所以吧char类型和int<br>类型对齐进行计算。</p>
@@ -143,6 +105,8 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 	
 	
 	
+	
+		
 	
 		
 	

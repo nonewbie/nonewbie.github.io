@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hello World | nonewbie&#39;s Blog</title>
+  <title>C指针运算 | nonewbie&#39;s Blog</title>
   <meta name="author" content="nonewbie">
   
   <meta name="description" content="nonewbie&#39;s blog">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Hello World"/>
+  <meta property="og:title" content="C指针运算"/>
   <meta property="og:site_name" content="nonewbie&#39;s Blog"/>
 
   
@@ -58,7 +58,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
   <div class="container" id="container">
 	<div class="content">
 	  <div class="page-header">		
-  <h1><a class="brand" href="/">nonewbie&#39;s Blog</a><span class="split"></span><span class="title">Hello World</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2014-02-28</span></h1>
+  <h1><a class="brand" href="/">nonewbie&#39;s Blog</a><span class="split"></span><span class="title">C指针运算</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2015-08-16</span></h1>
 </div>		
 
 <div class="row page">
@@ -71,15 +71,29 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 	  
 
 	  <!-- content -->
-	  <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+	  <h2 id="指针的运算">指针的运算</h2><h3 id="1-_取地址运算“&amp;”与取内容运算“*”">1. 取地址运算“&amp;”与取内容运算“*”</h3><ul>
+<li>取地址运算符“&amp;”：“&amp;”是单目运算符，其结合性为自右至左，功能是取变量的地址。  </li>
+<li>取内容运算符“*”：“*” 是单目运算符，其结合性为自右至左，用来表示指针变量所指的变量。在 “*” 运算符之后跟的变量必须是指针变量。  </li>
+</ul>
+<h3 id="2-_指针算数运算">2. 指针算数运算</h3><p><strong>指针的运算与其基类型有关 ， 一般的，如果p是一个指针 ，n是一个正整数 ，则对指针 p 进行 +（-）操作后的实际地址是 ：</strong><code>p +(-)n*sizeof(基类型)</code>  </p>
+<pre><code class="c"><span class="keyword">char</span>    *p ;<span class="comment">//一个字节</span>
+<span class="keyword">int</span>      *q ;<span class="number">64</span>位编译器<span class="number">4</span>个字节
+<span class="keyword">double</span>   *tk ;<span class="comment">//8字节</span>
+<span class="comment">//假设当前地址为 ： p = 2110H ,  q = 2231H , tk = 2478H</span>
+p += <span class="number">1</span> ; <span class="comment">// p = p + 1 = 2111H </span>
+q += <span class="number">4</span> ; <span class="comment">// q = q + 4*4 = 2239H  </span>
+tk -= <span class="number">3</span> ; <span class="comment">// tk = tk -3*8 = 246CH</span>
+</code></pre>
+<h3 id="3-_两指针变量相减">3.  两指针变量相减</h3><blockquote>
+<p>两指针变量相减所得之差是两个指针所指数组元素之间相差的元素个数。实际上是两个指针值（地址）相减之差再除以该数组元素的长度（字节数）。例如pf1和pf2是指向同一浮点数组的两个指针变量，设pf1的值为2010H，pf2的值为2000H，而浮点数组每个元素占4个字节，所以pf1-pf2的结果为(2000H-2010H)/4=4，表示pf1和 pf2之间相差4个元素。  </p>
+<p>两个指针变量不能进行加法运算  </p>
+</blockquote>
+<h3 id="4-_指针的关系运算">4. 指针的关系运算</h3><ul>
+<li>pf1==pf2 表示pf1和pf2指向同一数组元素；  </li>
+<li>pf1&gt;pf2 表示pf1处于高地址位置；  </li>
+<li>pf1&lt;pf2 表示pf2处于低地址位置。  </li>
+</ul>
+<h3 id="5-_指针的下标运算">5. 指针的下标运算</h3><p><code>p[i] = *(p + i) ;</code></p>
 	  
 
 	  <div>
@@ -92,14 +106,14 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 	
 	
 		
-	
-		
-	
-		
-	
-		
 			
 			
+		
+	
+		
+	
+		
+	
 		
 	
 	

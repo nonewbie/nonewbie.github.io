@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>volatile | nonewbie&#39;s Blog</title>
+  <meta name="author" content="nonewbie">
+  
+  <meta name="description" content="nonewbie&#39;s blog">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="volatile"/>
+  <meta property="og:site_name" content="nonewbie&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="nonewbie&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'shineneo1&#39;s blog']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+
+</head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">nonewbie&#39;s Blog</a><span class="split"></span><span class="title">volatile</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2015-10-11</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <h2 id="volatitle关键字">volatitle关键字</h2><h3 id="volatitle重要么">volatitle重要么</h3><blockquote>
+<p>volatile的重要性对于搞嵌入式的程序员来说是不言而喻的，对于volatile的了解程度常常被不少公司在招聘嵌入式编程人员面试的时候作为衡量一个应聘者是否合格的参考标准之一，为什么volatile如此的重要呢？这是因为嵌入式的编程人员要经常同中断、底层硬件等打交道，而这些都用到volatile，所以说嵌入式程序员必须要掌握好volatile的使用。</p>
+</blockquote>
+<h3 id="先上代码：">先上代码：</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span>  </span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span>  </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> * argv[])</span>  </span><br><span class="line"></span>&#123;  </span><br><span class="line">		<span class="keyword">struct</span> timeval start,end;  </span><br><span class="line">		gettimeofday( &amp;start, <span class="literal">NULL</span> );  <span class="comment">/*测试起始时间*/</span>  </span><br><span class="line">		<span class="keyword">double</span> timeuse;  </span><br><span class="line">		<span class="keyword">int</span> j;  </span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;<span class="number">10000000</span>;j++)  </span><br><span class="line">				;  </span><br><span class="line">		gettimeofday( &amp;end, <span class="literal">NULL</span> );   <span class="comment">/*测试终止时间*/</span>  </span><br><span class="line">		timeuse = <span class="number">1000000</span> * ( end.tv_sec - start.tv_sec ) + end.tv_usec -start.tv_usec;  </span><br><span class="line">		timeuse /= <span class="number">1000000</span>;  </span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"运行时间为：%f\n"</span>,timeuse);  </span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>timeuse 用来记录for 循环前后时间值，显然，for循环只是空循环<br>分别使用Debug模式和Release模式编译运行，得到如下结果：<br>Debug模式：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">运行时间为：<span class="number">0.028260</span></span><br></pre></td></tr></table></figure></p>
+<p>Release模式：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">运行时间为：<span class="number">0.000001</span></span><br></pre></td></tr></table></figure></p>
+<p>从结果显然可以看出差距如此之大??????</p>
+<p>大概的说下Debug和Release 模式下编译方式的区别，Debug 通常称为调试版本，它包含调试信息，并且不作任何优化，便于程序员调试程序。Release 称为发布版本，它往往是进行了各种优化，使得程序在代码大小和运行速度上都是最优的，以便用户很好地使用。<br>这里就是Release模式下编译器优化时，它认为这个循环并没有操作，而直接不执行这个循环，从而导致以上两种结果的差异。</p>
+<p>但是如果用volititle修饰变量j，编译器就不会善作主张的把for循环给优化掉。也就是说，需要关键字volatile来告诉编译器我就是要关心这个j，你不要对它作优化，这样就能使for循环生效。<br>代码如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span>  </span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span>  </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> * argv[])</span>  </span><br><span class="line"></span>&#123;  </span><br><span class="line">		<span class="keyword">struct</span> timeval start,end;  </span><br><span class="line">		gettimeofday( &amp;start, <span class="literal">NULL</span> );  <span class="comment">/*测试起始时间*/</span>  </span><br><span class="line">		<span class="keyword">double</span> timeuse;  </span><br><span class="line">		<span class="keyword">int</span> <span class="keyword">volatile</span> j;  </span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;<span class="number">10000000</span>;j++)  </span><br><span class="line">				;  </span><br><span class="line">		gettimeofday( &amp;end, <span class="literal">NULL</span> );   <span class="comment">/*测试终止时间*/</span>  </span><br><span class="line">		timeuse = <span class="number">1000000</span> * ( end.tv_sec - start.tv_sec ) + end.tv_usec -start.tv_usec;  </span><br><span class="line">		timeuse /= <span class="number">1000000</span>;  </span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"运行时间为：%f\n"</span>,timeuse);  </span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Debug模式：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">运行时间为：<span class="number">0.027647</span></span><br></pre></td></tr></table></figure></p>
+<p>Release模式：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">运行时间为：<span class="number">0.027390</span></span><br></pre></td></tr></table></figure></p>
+<p>这时，发现只有些许差别，但是这个差别是系统造成的，我们控制不了。这里就能见到volatitle的作用。</p>
+<h3 id="volatitle通常怎么用">volatitle通常怎么用</h3><ul>
+<li>中断服务程序中修改的供其它程序检测的变量需要加volatile  </li>
+<li>多任务环境下各任务间共享的标志应该加volatile  </li>
+<li>存储器映射的硬件寄存器通常也要加volatile说明，因为每次对它的读写都可能有不同意义 </li>
+</ul>
+	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+		
+			
+			
+		
+	
+		
+	
+		
+			
+			
+			
+		
+	
+		
+	
+		
+	
+	
+		<li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2015/08/16/C指针运算/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2015 nonewbie
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+</body>
+</html>
